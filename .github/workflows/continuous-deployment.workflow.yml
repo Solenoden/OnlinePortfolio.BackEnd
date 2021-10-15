@@ -32,6 +32,8 @@ jobs:
       ${{ success() }} &&
       ${{ github.ref == 'refs/head/dev' }}
     steps:
+      - uses: actions/checkout@v2
+
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
@@ -47,6 +49,8 @@ jobs:
       ${{ success() }} &&
       ${{ github.ref == 'refs/head/master' }}
     steps:
+      - uses: actions/checkout@v2
+
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
