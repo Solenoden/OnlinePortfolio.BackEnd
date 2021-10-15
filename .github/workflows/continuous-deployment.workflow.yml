@@ -28,9 +28,7 @@ jobs:
   deploy-dev:
     needs: build
     runs-on: ubuntu-latest
-    if: |
-      ${{ success() }} &&
-      ${{ github.ref == 'refs/head/dev' }}
+    if: success() && github.ref == 'refs/head/dev'
     steps:
       - uses: actions/checkout@v2
 
@@ -45,9 +43,7 @@ jobs:
   deploy-prod:
     needs: build
     runs-on: ubuntu-latest
-    if: |
-      ${{ success() }} &&
-      ${{ github.ref == 'refs/head/master' }}
+    if: success() && github.ref == 'refs/head/master'
     steps:
       - uses: actions/checkout@v2
 
