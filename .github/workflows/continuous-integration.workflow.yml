@@ -1,0 +1,30 @@
+name: continuous-integration-workflow
+
+on:
+  pull_request:
+    branches:
+      - master
+      - dev
+
+env:
+  NODE_VERSION: 10.x
+
+jobs:
+  continuous-integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Lint Tests
+        run: npm run lint
+
+#      - name: Run Unit Tests
+#        run: npm run test

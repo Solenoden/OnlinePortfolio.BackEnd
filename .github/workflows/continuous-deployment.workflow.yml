@@ -1,0 +1,56 @@
+name: continuous-deployment-workflow
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+
+env:
+  NODE_VERSION: 10.x
+  APP_NAME_DEV: 'online-portfolio-backend-dev'
+  APP_NAME_PROD: 'online-portfolio-backend-prod'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Dependencies
+        run: npm ci
+
+  deploy-dev:
+    needs: build
+    runs-on: ubuntu-latest
+    if: |
+      ${{ succeeded() }} &&
+      ${{ github.ref == 'refs/head/dev' }}
+    steps:
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          usedocker: false
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ env.APP_NAME_DEV }}
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+
+  deploy-prod:
+    needs: build
+    runs-on: ubuntu-latest
+    if: |
+      ${{ succeeded() }} &&
+      ${{ github.ref == 'refs/head/master' }}
+    steps:
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          usedocker: false
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ env.APP_NAME_PROD }}
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
