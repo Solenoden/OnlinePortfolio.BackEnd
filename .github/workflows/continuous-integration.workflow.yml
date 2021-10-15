@@ -1,4 +1,4 @@
-name: pull-request-validation
+name: continuous-integration-workflow
 
 on:
   pull_request:
@@ -15,10 +15,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Use Node.js {{ env.NODE_VERSION }}
+      - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v1
         with:
-          node-version: {{ env.NODE_VERSION }}
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Install Dependencies
         run: npm ci
