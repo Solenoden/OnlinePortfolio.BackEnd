@@ -12,6 +12,6 @@ RUN npm install
 
 CMD ["tsc"]
 
-COPY ./dist .
+COPY ./dist/ .
 
 CMD ["node", "app.js"]
