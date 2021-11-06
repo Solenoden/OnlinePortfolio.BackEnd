@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import { Express, Request, Response } from 'express'
 import { ProjectService } from '../services/project.service'
 
