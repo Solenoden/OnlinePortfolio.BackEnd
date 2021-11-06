@@ -10,8 +10,8 @@ COPY ["package.json", "package-lock.json", "./"]
 
 RUN npm install
 
-CMD ["tsc"]
+ADD . /app
 
-COPY ./dist/ .
+RUN npm run tsc
 
 CMD ["node", "app.js"]
