@@ -12,6 +12,6 @@ RUN npm install
 
 ADD . /app
 
-RUN npm run tsc
+RUN npm run build
 
 CMD ["node", "app.js"]
