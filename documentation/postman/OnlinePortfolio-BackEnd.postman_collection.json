@@ -1,0 +1,28 @@
+{
+	"info": {
+		"_postman_id": "1e2d33a5-5d63-4b6e-a70a-5cf6b67eaaa7",
+		"name": "OnlinePortfolio-BackEnd",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetProjects",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/v1/projects",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"projects"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
