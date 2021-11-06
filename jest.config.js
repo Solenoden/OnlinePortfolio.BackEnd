@@ -15,6 +15,7 @@ module.exports = {
     modulePathIgnorePatterns: [
         'jest.config.js',
         'coverage',
-        'dist'
+        'dist',
+        'routes'
     ]
 }
