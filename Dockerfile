@@ -6,10 +6,12 @@ ENV NODE_ENV = $environment
 
 WORKDIR /app
 
-COPY ["package.json", "package-lock.json", "./"]
+COPY ['package.json', 'package-lock.json', './']
 
 RUN npm install --production
 
 COPY . .
 
-RUN npm run start
+CMD ['tsc']
+
+CMD ['node', '.']
