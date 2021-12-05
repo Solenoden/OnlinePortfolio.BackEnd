@@ -5,11 +5,6 @@ import morgan from 'morgan'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import http from 'http'
-import dotenv from 'dotenv'
-
-if (!process.env.NODE_ENV || process.env.NODE_ENV.toLowerCase() !== 'production') {
-    dotenv.config()
-}
 import * as projectRoutes from './routes/project.routes'
 import * as authenticationRoutes from './routes/authentication.routes'
 

@@ -16,19 +16,3 @@ COPY package.json ./
 RUN npm install --production
 COPY --from=builder /app/dist .
 CMD ["node", "app.js"]
-
-
-
-
-
-#WORKDIR /app
-#
-#COPY ["package.json", "package-lock.json", "./"]
-#
-#RUN npm install
-#
-#ADD . /app
-#
-#RUN npm run build
-#
-#CMD ["node", "app.js"]
