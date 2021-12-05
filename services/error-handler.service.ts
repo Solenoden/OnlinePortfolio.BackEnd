@@ -6,12 +6,12 @@ export class ErrorHandlerService {
     public static handleError(response: Response, error: any): void {
         if (error && error instanceof HttpError) {
             response.statusCode = error.statusCode
-            response.send({ error: error, errorMessage: error.message })
+            response.send(error)
             return
         }
 
         const unexpectedError = new UnexpectedError(error)
         response.statusCode = unexpectedError.statusCode
-        response.send({ error: unexpectedError, errorMessage: unexpectedError.message })
+        response.send(error)
     }
 }

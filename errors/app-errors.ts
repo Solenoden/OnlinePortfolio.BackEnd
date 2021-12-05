@@ -18,6 +18,12 @@ export class AuthenticationError extends HttpError {
     }
 }
 
+export class InvalidServiceTokenError extends HttpError {
+    constructor() {
+        super('Unauthorized: Please provide a valid service token.', 400)
+    }
+}
+
 export class UnexpectedError extends HttpError {
     constructor(public originalError: any) {
         super('An unexpected error occurred. Please try again later.', 500)

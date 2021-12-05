@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import { NextFunction, Request, RequestHandler, Response } from 'express'
 import { AuthenticationConfig } from '../config/authentication.config'
-import { AuthenticationError } from '../errors/app-errors'
+import { AuthenticationError, InvalidServiceTokenError } from '../errors/app-errors'
 import { ErrorHandlerService } from './error-handler.service'
 
 export class AuthenticationService {
@@ -16,7 +16,7 @@ export class AuthenticationService {
             return token
         }
 
-        throw new AuthenticationError()
+        throw new InvalidServiceTokenError()
     }
 
     public static authorize(): RequestHandler {
