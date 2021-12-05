@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-      - dev
+      - prod
 
 env:
   NODE_VERSION: 14.18.1
@@ -12,7 +12,7 @@ env:
 jobs:
   publish-dev:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/dev'
+    if: github.ref == 'refs/heads/master'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -30,7 +30,7 @@ jobs:
 
   publish-prod:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/prod'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2

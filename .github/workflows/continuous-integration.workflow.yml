@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - master
-      - dev
+      - prod
 
 env:
   NODE_VERSION: 10.x
