@@ -45,3 +45,33 @@ jobs:
           dockerfile_name: Dockerfile
           docker_options: ${{ format('{0}{1}{2}', '--no-cache --build-arg node_version=', env.NODE_VERSION, ' --build-arg environment=production') }}
           process_type: web
+
+  build-and-publish-docker-image-to-dockerhub:
+    if: github.ref == 'refs/heads/prod'
+    runs-on: ubuntu-latest
+    environment: OnlinePortfolio.Backend-Prod
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          build-args: |
+            node_version=14.18.1
+          push: true
+          tags: gavindebruyn/online-portfolio.backend:latest
