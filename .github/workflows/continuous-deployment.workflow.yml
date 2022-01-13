@@ -73,5 +73,6 @@ jobs:
           file: ./Dockerfile
           build-args: |
             node_version=14.18.1
+            environment=production
           push: true
           tags: gavindebruyn/online-portfolio.backend:latest
